@@ -56,6 +56,6 @@ public class ComparendoValidador {
     }
 
     private Validation<String, LocalDateTime> validarFechaComparendo(LocalDateTime fechaComparendo) {
-        return fechaComparendo != null && fechaComparendo.atZone(BOGOTA).isAfter(ZonedDateTime.now(BOGOTA)) ? Validation.valid(fechaComparendo) : Validation.invalid("comparendo.fechaComparendo");
+        return fechaComparendo != null && fechaComparendo.atZone(BOGOTA).isBefore(ZonedDateTime.now(BOGOTA)) ? Validation.valid(fechaComparendo) : Validation.invalid("comparendo.fechaComparendo");
     }
 }
