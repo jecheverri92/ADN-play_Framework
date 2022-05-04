@@ -8,10 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 
-public class ComparendoMapper implements ResultSetMapper<Comparendo> {
+public class ComparendoMapper implements ResultSetMapper<ComparendoRecord> {
     @Override
-    public Comparendo map(int index, ResultSet r, StatementContext ctx) throws SQLException {
-        return new Comparendo(
+    public ComparendoRecord map(int index, ResultSet r, StatementContext ctx) throws SQLException {
+        return new ComparendoRecord(
                 r.getLong("id_comparendo"),
                 r.getString("numero_comparendo"),
                 r.getInt("tipo_infraccion"),

@@ -13,14 +13,12 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Comparendo {
+public class Curso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idComparendo;
-    private String numeroComparendo;
-    private Integer tipoInfraccion;
+    private Long idAsistenciaCurso;
     private String identificacionInfractor;
-    private LocalDateTime fechaComparendo;
-    @Setter
-    private BigDecimal valorComparendo;
+    private String numeroComparendo;
+    private LocalDateTime fechaAsistencia;
+
 }

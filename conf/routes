@@ -10,7 +10,12 @@ PUT    /:id                         controllers.PersonaController.update(id, req
 DELETE /:id                         controllers.PersonaController.delete(id)
 
 # Comparendos
-POST /RegistrarPagoComparendos/comparendos  controllers.ComparendoController.registrarComparendo(request:Request)
+POST /RegistrarPagoComparendos/comparendos                                  controllers.ComparendoController.registrarComparendo(request:Request)
+GET /RegistrarPagoComparendos/comparendos/idInfractor/:idInfractor          controllers.ComparendoController.consultarComparendosPorInfractor(idInfractor: String)
+PUT /RegistrarPagoComparendos/comparendos/pago                              controllers.ComparendoController.pagarComparendo(request:Request)
+
+# Cursos
+POST /RegistrarPagoComparendos/cursos controllers.CursoController.registrarCurso(request:Request)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

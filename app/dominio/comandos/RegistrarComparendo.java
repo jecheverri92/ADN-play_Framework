@@ -8,7 +8,6 @@ import infraestructura.acl.dto.ComparendoDTO;
 import io.vavr.concurrent.Future;
 import io.vavr.control.Either;
 import play.Logger;
-import util.FutureE;
 
 import javax.inject.Inject;
 

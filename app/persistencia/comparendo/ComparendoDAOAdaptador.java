@@ -1,11 +1,8 @@
 package persistencia.comparendo;
 
 import dominio.modelo.Comparendo;
-import io.vavr.control.Try;
 
-import java.sql.Timestamp;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
 
 public class ComparendoDAOAdaptador {
 
@@ -14,7 +11,7 @@ public class ComparendoDAOAdaptador {
 
     public static ComparendoRecord transformar(Comparendo comparendo){
         return new ComparendoRecord(
-                comparendo.getId(),
+                comparendo.getIdComparendo(),
                 comparendo.getNumeroComparendo(),
                 comparendo.getTipoInfraccion(),
                 comparendo.getIdentificacionInfractor(),

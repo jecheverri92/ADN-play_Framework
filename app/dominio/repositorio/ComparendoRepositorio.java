@@ -1,7 +1,6 @@
 package dominio.repositorio;
 
 import dominio.modelo.Comparendo;
-import dominio.modelo.Persona;
 import io.vavr.concurrent.Future;
 import io.vavr.control.Option;
 import org.skife.jdbi.v2.DBI;
@@ -9,14 +8,12 @@ import persistencia.comparendo.ComparendoDAO;
 import persistencia.comparendo.ComparendoDAOAdaptador;
 import persistencia.comparendo.ComparendoRecord;
 import persistencia.comparendo.TarifaComparendoDAO;
-import persistencia.persona.PersonaDAO;
-import persistencia.persona.PersonaDAOAdaptador;
-import persistencia.persona.PersonaRecord;
 import play.db.Database;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
-import java.util.Collection;
+import java.util.List;
+
 
 public class ComparendoRepositorio {
     private Database db;
@@ -36,7 +33,7 @@ public class ComparendoRepositorio {
                             record.getTipoInfraccion(),
                            record.getIdentificacionInfractor(),
                            record.getFechaComparendo(),
-                           BigDecimal.ONE);
+                           record.getValorComparendo());
                 }
         );
     }
@@ -45,6 +42,35 @@ public class ComparendoRepositorio {
         return Future.of(() ->
                 Option.of(new DBI(db.getDataSource()).onDemand(TarifaComparendoDAO.class).obtenerTarifaComparendo(tipoInfraccion))
         );
+    }
+
+    public Future<Integer> consultarComparendo(String comparendo) {
+        Future<Integer> o =  Future.of(() ->
+               new DBI(db.getDataSource()).onDemand(ComparendoDAO.class).obtenerComparendo(comparendo)
+        );
+        Integer l = o.get();
+        return o;
+    }
+
+    public Future<Option<ComparendoRecord>> consultarComparendoRecord(String comparendo) {
+        Future<Option<ComparendoRecord>> o =  Future.of(() ->
+                Option.of(new DBI(db.getDataSource()).onDemand(ComparendoDAO.class).obtenerComparendoRecord(comparendo))
+        );
+        return o;
+    }
+
+    public Future<List<Comparendo>> obtenerComparendosPorInfractor(String idenficacionInfractor) {
+        return Future.of(() ->
+                io.vavr.collection.List.ofAll(new DBI(db.getDataSource()).onDemand(ComparendoDAO.class).obtenerComparendosPorInfractor(idenficacionInfractor))
+                        .map(ComparendoDAOAdaptador::transformar).toJavaList()
+        );
+    }
+
+    public void borrarComparendo(Long idComparendo){
+
+        new DBI(db.getDataSource()).onDemand(ComparendoDAO.class).borrarComparendo(idComparendo);
+
+
     }
 
 }

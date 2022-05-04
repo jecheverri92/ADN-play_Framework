@@ -2,10 +2,8 @@ package infraestructura.acl.adaptadores;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import dominio.modelo.Comparendo;
-import dominio.modelo.Persona;
 import dominio.modelo.validadores.ComparendoValidador;
 import infraestructura.acl.dto.ComparendoDTO;
-import infraestructura.acl.dto.PersonaDTO;
 import io.vavr.collection.List;
 import io.vavr.collection.Seq;
 import io.vavr.control.Either;
@@ -13,7 +11,6 @@ import io.vavr.control.Try;
 import play.libs.Json;
 
 import javax.inject.Inject;
-import java.time.ZoneId;
 
 public class ComparendoAdaptador {
 
